@@ -1,0 +1,12 @@
+<%= form_for(@game_session) do |gs| %>
+<%= gs.label :title %>
+<%= gs.text_field :title %>
+<%= gs.submit %>
+<% end %>
+
+<%= form_for(@user) do |u| %>
+<%= u.text_field :first_name %>
+<%= u.label :game_session_id %>
+<%= u.text_field :game_session_id %>
+<%= u.submit %>
+<%= end %>

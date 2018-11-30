@@ -1,0 +1,9 @@
+<%= @game_session.title %>
+<br>
+Code:
+<%= @game_session.code %>
+
+<%= @game_session.users.each do |g| %>
+<%= link_to '' %>
+<%= g.last_name %>
+<% end %>
