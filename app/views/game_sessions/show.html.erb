@@ -3,7 +3,5 @@
 Code:
 <%= @game_session.code %>
 
-<%= @game_session.users.each do |g| %>
-<%= link_to '' %>
-<%= g.last_name %>
-<% end %>
+<% @question = Question.find_by(id: 1) %>
+<%= @question.content %>

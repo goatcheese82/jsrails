@@ -14,8 +14,11 @@ class UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         @user.game_session = GameSession.find(params[:user][:code])
-        binding.pry
-        redirect_to game_session_path(@user.game_session)
+        if @user.save
+            redirect_to game_session_path(@user.game_session)
+        else
+            redirect_to new_user_path
+        end
     end
 
     def show
@@ -35,7 +38,6 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(
           :first_name,
-          :last_name,
           :game_session_id,
           :session_code
         )
