@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2018_12_05_184436) do
 
   create_table "rounds", force: :cascade do |t|
     t.integer "game_session_id"
-    t.integer "question_idra"
+    t.integer "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_session_id"], name: "index_rounds_on_game_session_id"
@@ -57,11 +57,7 @@ ActiveRecord::Schema.define(version: 2018_12_05_184436) do
 
   create_table "users", force: :cascade do |t|
     t.integer "game_session_id"
-    t.string "code"
-    t.string "full_name"
     t.string "first_name"
-    t.string "last_name"
-    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["game_session_id"], name: "index_users_on_game_session_id"
