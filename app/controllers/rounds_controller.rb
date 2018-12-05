@@ -3,10 +3,11 @@ class RoundsController < ApplicationController
         @round = Round.new
     end
     def create
+        @question = Question.random
         @round = Round.new
         @round.game_session = GameSession.find(session[:game_session_id])
-        @round.question = Question.random
         @round.save
+        @round.question = @question
         binding.pry
         
         redirect_to game_session_round_path(@round)

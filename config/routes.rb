@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :round_questions
   resources :rounds
   #resources :user_questions
   root 'game_sessions#index'
