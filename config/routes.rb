@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+  resources :rounds
   #resources :user_questions
   root 'game_sessions#index'
   #resources :answers
   resources :game_sessions do
-    resources :users, :user_questions
+    resources :users, :user_questions, :rounds
   end
   resources :sessions
   resources :users

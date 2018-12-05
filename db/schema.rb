@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_30_220833) do
+ActiveRecord::Schema.define(version: 2018_12_05_184436) do
 
   create_table "answers", force: :cascade do |t|
     t.string "content"
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 2018_11_30_220833) do
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer "game_session_id"
+    t.integer "question_idra"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_session_id"], name: "index_rounds_on_game_session_id"
   end
 
   create_table "sessions", force: :cascade do |t|
