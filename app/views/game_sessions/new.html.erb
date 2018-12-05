@@ -1,6 +1,10 @@
+<div>
 <%= form_for(@game_session) do |gs| %>
-<%= gs.label :title %>
-<%= gs.text_field :title %>
+<%#= gs.label :title %>
+<%#= gs.text_field :title %>
 <%= gs.submit %>
 <% end %>
+</div>
+<div>
 <%= link_to 'Join', new_user_path %>
+</div>

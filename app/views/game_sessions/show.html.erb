@@ -1,7 +1,17 @@
-<%= @game_session.title %>
-<br>
-Code:
-<%= @game_session.code %>
-
-<% @question = Question.find_by(id: 1) %>
-<%= @question.content %>
+<div class="session-info">
+    <%= @game_session.title %>
+    <div class="code">
+        Code:
+        <%= @game_session.code %>
+    </div>
+    <div class="users-list">
+        <% @users.each do |us| %>
+        <div class="user">
+        <%= us.first_name %>
+        </div>
+        <% end %>
+    </div>
+</div>
+<div>
+<%= link_to "We're all here!", new_game_session_user_question_path(@game_session) %>
+</div>

@@ -8,12 +8,20 @@ class UsersController < ApplicationController
     end
 
     def new
-        @user = User.new
+        if !!session[:game_session]
+            @code = session[:code]
+            @user = User.new
+        else
+            @user = User.new
+            @code = nil
+        end
     end
 
     def create
         @user = User.create(user_params)
-        @user.game_session = GameSession.find(params[:user][:code])
+        @user.game_session = GameSession.find_by(code: params[:user][:code])
+        @user.save
+        session[:user_id] = @user.id
         if @user.save
             redirect_to game_session_path(@user.game_session)
         else
@@ -41,7 +49,7 @@ class UsersController < ApplicationController
           :game_session_id,
           :session_code
         )
-      end
+    end
 
     def set_current_user
         @current_user = User.find(session[:id])

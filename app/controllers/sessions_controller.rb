@@ -22,16 +22,13 @@ class SessionsController < ApplicationController
     def update
     end
 
-    def destroy
-    end
-
     def edit
     end
 
     private
 
     def in_game
-        params[game_session]
+        params[:game_session]
     end
 
 end

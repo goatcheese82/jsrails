@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  root 'game_sessions#new'
-  resources :answers
-  resources :game_sessions
+  #resources :user_questions
+  root 'game_sessions#index'
+  #resources :answers
+  resources :game_sessions do
+    resources :users, :user_questions
+  end
   resources :sessions
-    
-  resources :questions
   resources :users
+  resources :questions
+  resources :user_questions
+  #resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

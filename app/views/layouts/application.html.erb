@@ -10,6 +10,10 @@
   </head>
 
   <body>
+  <div class="nav">
     <%= yield %>
+  <% if session[:game_session] %>
+    <%= link_to "End Game", "/game_sessions#logout" %>
+  <% end %>
   </body>
 </html>

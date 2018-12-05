@@ -1,0 +1,13 @@
+<div class="question">
+<%= @question.content %>
+<% @answer = UserQuestion.new %>
+<%= form_for @answer do |a| %>
+    <%= a.label :content %>
+    <%= a.text_field :content %>
+    <%= a.submit %>
+<% end %>
+</div>
+
+<div class="answers-container">
+<%= %>
+</div>
