@@ -5,6 +5,7 @@ class CreateUserQuestions < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.integer :question_id
       t.integer :game_session_id
+      t.integer :round_id
 
       t.timestamps
     end

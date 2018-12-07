@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_05_184436) do
+ActiveRecord::Schema.define(version: 2018_12_05_203924) do
 
   create_table "answers", force: :cascade do |t|
     t.string "content"
@@ -27,6 +27,13 @@ ActiveRecord::Schema.define(version: 2018_12_05_184436) do
 
   create_table "questions", force: :cascade do |t|
     t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "round_questions", force: :cascade do |t|
+    t.integer "round_id"
+    t.integer "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,6 +58,7 @@ ActiveRecord::Schema.define(version: 2018_12_05_184436) do
     t.integer "user_id"
     t.integer "question_id"
     t.integer "game_session_id"
+    t.integer "round_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

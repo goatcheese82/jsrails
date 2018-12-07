@@ -5,6 +5,7 @@ class GameSessionsController < ApplicationController
     def index
         if session[:game_session]
             @game_session = GameSession.find(session[:game_session_id])
+            redirect_to game_session_path(@game_session)
         else
         @game_session = GameSession.new
         @new_game_session_user = User.new
@@ -35,13 +36,15 @@ class GameSessionsController < ApplicationController
     end
 
     def show
-        if session[:user_id]
-            @game_session = GameSession.find(params[:id])
+        @game_session = GameSession.find(params[:id])
+        @users = @game_session.users
+        if session[:user_id] && @game_session.rounds.empty?
             @user = User.find(session[:user_id])
-            @question = Question.random
-            @users = User.all
+        elsif session[:user_id]
+            @user = User.find(session[:user_id])
+            @current_round = @game_session.current_round
+            redirect_to round_path(@current_round)
         else
-            @game_session = GameSession.find(params[:id])
             @user = User.new
             redirect_to new_game_session_user_path(@game_session)
         end
@@ -62,6 +65,7 @@ class GameSessionsController < ApplicationController
         @game_session = GameSession.find params[:code]
         @current_user.game_session = @game_session
         session[:game_session] = @game_session
+        session[:game_session_id] = @game_session.id
         redirect_to game_session_path(@game_session)
     end
 

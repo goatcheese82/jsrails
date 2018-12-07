@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
     has_many :users, through: :user_questions
+    has_many :round_questions
     has_many :rounds
 
     def self.random

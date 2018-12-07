@@ -5,14 +5,16 @@ class UserQuestionsController < ApplicationController
     end
     
     def create
+        @round = Round.last
         @answer = UserQuestion.new(answer_params)
         @answer.user = User.find(session[:user_id])
         @answer.game_session = GameSession.find(session[:game_session_id])
         @answer.question = Question.last
-        binding.pry
+        @answer.round_id = @round.id
+        
         @answer.save
 
-        redirect_to game_session_path(session[:game_session_id])
+        redirect_to round_path(@round)
 
 
 

@@ -1,13 +1,22 @@
 <div class="question">
-<%= @question.content %>
-<% @answer = UserQuestion.new %>
-<%= form_for @answer do |a| %>
-    <%= a.label :content %>
-    <%= a.text_field :content %>
-    <%= a.submit %>
+<%= @game_session.code%>
+<%= @round.question.content %>
+<% if @user.user_questions.empty? %>
+    <%= @user.first_name %>:
+    <%= @round.question.content %>
+    <% @answer = UserQuestion.new %>
+    <%= form_for @answer do |a| %>
+        <%= a.label :content %>
+        <%= a.text_field :content %>
+        <%= a.submit %>
+    <% end %>
 <% end %>
 </div>
 
 <div class="answers-container">
-<%= %>
+<% @answers.each do |a| %>
+<div class="answer-content">
+<%= a.content %>
+</div>
+<% end %>
 </div>

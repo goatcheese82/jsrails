@@ -20,6 +20,8 @@ class UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         @user.game_session = GameSession.find_by(code: params[:user][:code])
+        session[:game_session] = @user.game_session
+        session[:game_session_id] = @user.game_session.id
         @user.save
         session[:user_id] = @user.id
         if @user.save
@@ -33,12 +35,6 @@ class UsersController < ApplicationController
     end
 
     def update
-    end
-
-    def destroy
-    end
-
-    def edit
     end
 
     private
