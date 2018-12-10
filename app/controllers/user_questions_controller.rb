@@ -1,5 +1,10 @@
 class UserQuestionsController < ApplicationController
 
+    def index
+        @game_session = GameSession.find(session[:game_session_id])
+        @answers = @game_session.user_questions
+        render json: @answers
+    end
 
     def new
     end
@@ -23,6 +28,7 @@ class UserQuestionsController < ApplicationController
 
 
     def show
+        @answer = UserQuestion.find(params[:id])
     end
 
 

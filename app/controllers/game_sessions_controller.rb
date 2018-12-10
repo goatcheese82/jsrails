@@ -1,5 +1,6 @@
 class GameSessionsController < ApplicationController
-
+    before_action :set_game_session, only: [:show]
+    before_action :set_current_round, only: [:show]
     require 'securerandom'
 
     def index
@@ -36,17 +37,20 @@ class GameSessionsController < ApplicationController
     end
 
     def show
-        @game_session = GameSession.find(params[:id])
         @users = @game_session.users
+        @code = @game_session.code
+        #render json: @game_session
         if session[:user_id] && @game_session.rounds.empty?
+            @current_round = Round.new
             @user = User.find(session[:user_id])
         elsif session[:user_id]
             @user = User.find(session[:user_id])
             @current_round = @game_session.current_round
-            redirect_to round_path(@current_round)
+            #redirect_to round_path(@current_round)
         else
             @user = User.new
-            redirect_to new_game_session_user_path(@game_session)
+            @current_round = Round.new
+            #redirect_to new_game_session_user_path(@game_session)
         end
     end
 
@@ -70,6 +74,15 @@ class GameSessionsController < ApplicationController
     end
 
     private
+
+    def set_game_session
+        @game_session = GameSession.find(session[:game_session_id])
+
+    end
+    
+    def set_current_round
+        @current_round = @game_session.current_round
+    end
 
     def in_session?
         session[:game_session]

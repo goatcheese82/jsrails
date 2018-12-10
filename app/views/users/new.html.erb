@@ -1,7 +1,7 @@
-<%= form_for @user do |gs| %>
-<%= gs.label :first_name %>
-<%= gs.text_field :first_name %>
-<%= gs.label :code %>
-<%= gs.text_field :code, :value => @code %>
-<%= gs.submit %>
+<%= form_for @user do |u| %>
+<%= u.label :first_name %>
+<%= u.text_field :first_name %>
+<%= u.label :code %>
+<%= u.text_field :code, :value => @code %>
+<%= u.submit %>
 <% end %>

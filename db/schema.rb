@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2018_12_05_203924) do
 
   create_table "rounds", force: :cascade do |t|
     t.integer "game_session_id"
+    t.integer "round_number"
     t.integer "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,0 +1,41 @@
+<div class="session-info">
+    <%= @game_session.title %>
+    <div class="code">
+        Code:
+        <%= @game_session.code %>
+    </div>
+    <div class="users-list">
+        <% @users.each do |us| %>
+        <div class="user">
+        <%= us.first_name %>
+        </div>
+        <% end %>
+    </div>
+</div>
+<div>
+<%= link_to "We're all here!", new_game_session_round_path(@game_session) %>
+</div>
+
+
+
+
+
+
+Round:
+<%= @current_round.find_round_number %>
+<%= @current_round.question.content%>
+</div>
+<% if @user.user_questions.empty? %>
+    <%= @user.first_name %>:
+    <%= @round.question.content %>
+    <% @answer = UserQuestion.new %>
+    <%= form_for @answer do |a| %>
+        <%= a.label :content %>
+        <%= a.text_field :content %>
+        <%= a.submit %>
+    <% end %>
+<% else %>
+    <% @current_round.answers.each do |a| %>
+    <%= a.content %>
+    <% end %>
+<% end %>

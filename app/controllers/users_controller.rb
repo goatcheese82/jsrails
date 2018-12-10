@@ -4,7 +4,12 @@ class UsersController < ApplicationController
 
 
     def index
-        @user = User.new
+        if session[:game_session]
+            @game_session = GameSession.find(session[:game_session_id])
+            @users = @game_session.users
+            render json: @users
+        else
+        end
     end
 
     def new
@@ -25,9 +30,9 @@ class UsersController < ApplicationController
         @user.save
         session[:user_id] = @user.id
         if @user.save
-            redirect_to game_session_path(@user.game_session)
+            #redirect_to game_session_path(@user.game_session)
         else
-            redirect_to new_user_path
+            #redirect_to new_user_path
         end
     end
 

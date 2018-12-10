@@ -8,4 +8,8 @@ class GameSession < ApplicationRecord
     def current_round
         self.rounds.last
     end
+
+    def answers
+        self.user_questions
+    end
 end

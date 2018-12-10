@@ -1,17 +1,21 @@
-<div class="session-info">
-    <%= @game_session.title %>
-    <div class="code">
-        Code:
-        <%= @game_session.code %>
-    </div>
-    <div class="users-list">
-        <% @users.each do |us| %>
-        <div class="user">
-        <%= us.first_name %>
+<div class="session_info">
+    <%= @game_session.code %>
+    <%= link_to "Begin", new_user_path %>
+    <% if !session[:user_id] %>
+        <div>
+            <%= form_for @user do |u| %>
+            <%= u.label :first_name %>
+            <%= u.text_field :first_name %>
+            <%= u.hidden_field :code, :value => @code %>
+            <%= u.submit %>
+            <% end %>
         </div>
+    <% end %>
+    <div class="user_list">
+
+    <%= link_to "Show Users", game_session_users_path(@game_session), :class => "show_users" %>
+        <% @game_session.users.each do |gsu| %>
+        <%= gsu.first_name %>
         <% end %>
     </div>
-</div>
-<div>
-<%= link_to "We're all here!", new_game_session_round_path(@game_session) %>
 </div>

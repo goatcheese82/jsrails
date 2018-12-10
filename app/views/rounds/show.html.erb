@@ -18,5 +18,8 @@
 <div class="answer-content">
 <%= a.content %>
 </div>
+<div>
+<%= select_tag "User", options_from_collection_for_select(@users, "id", "first_name"), :include_blank => true %>
+<div>
 <% end %>
 </div>
