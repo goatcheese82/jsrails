@@ -13,9 +13,13 @@
     <% end %>
     <div class="user_list">
 
-    <%= link_to "Show Users", game_session_users_path(@game_session), :class => "show_users" %>
-        <% @game_session.users.each do |gsu| %>
-        <%= gsu.first_name %>
-        <% end %>
+        <%= link_to "Show Users", game_session_users_path(@game_session), :class => "show_users" %>
+
+        <ul>
+            
+        </ul>
+        <%# @game_session.users.each do |gsu| %>
+        <%#= gsu.first_name %>
+        <%# end %>
     </div>
 </div>

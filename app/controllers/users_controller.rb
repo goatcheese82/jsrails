@@ -4,12 +4,10 @@ class UsersController < ApplicationController
 
 
     def index
-        if session[:game_session]
-            @game_session = GameSession.find(session[:game_session_id])
-            @users = @game_session.users
-            render json: @users
-        else
-        end
+        session[:game_session]
+        @game_session = GameSession.find(session[:game_session_id])
+        @users = @game_session.users
+        render json: @users
     end
 
     def new
