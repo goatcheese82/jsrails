@@ -26,8 +26,14 @@
 
     <div class="question">
     <%#= link_to "Begin", new_game_session_round_path(@game_session), :class => "begin_round" %>
-        <%= form_for @round do |r| %>
-        <%= r.submit %>
-        <% end %>
+        <div class="question_content">
+            <%= form_for ([@game_session, @round]) do |r| %>
+            <%= r.submit %>
+            <% end %>
+        </div>
+
+        <ul>
+        </ul>
+        
     </div>
 </div>

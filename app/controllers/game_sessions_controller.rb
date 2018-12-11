@@ -41,6 +41,7 @@ class GameSessionsController < ApplicationController
         @code = @game_session.code
         #render json: @game_session
         if session[:user_id] && @game_session.rounds.empty?
+            @round = Round.new
             @current_round = Round.new
             @user = User.find(session[:user_id])
         elsif session[:user_id]
