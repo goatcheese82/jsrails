@@ -45,10 +45,12 @@ class GameSessionsController < ApplicationController
             @user = User.find(session[:user_id])
         elsif session[:user_id]
             @user = User.find(session[:user_id])
+            @round = Round.new
             @current_round = @game_session.current_round
             #redirect_to round_path(@current_round)
         else
             @user = User.new
+            @round = Round.new
             @current_round = Round.new
             #redirect_to new_game_session_user_path(@game_session)
         end

@@ -6,7 +6,16 @@ $(function(){
         //    $("div.show_users").html(response)
         //})
 
-        
+        $.get(this.href).success(function(json){
+            let $ul = $("div.user_list")
+            $ul.html("")
+
+            json.forEach(function(user){
+                $ul.append("<li>" + user.first_name + "</li>")
+            })
+        })
+
+
 
 
         e.preventDefault()
