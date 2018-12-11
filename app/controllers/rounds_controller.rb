@@ -21,13 +21,10 @@ class RoundsController < ApplicationController
         @round.game_session = GameSession.find(session[:game_session_id])
         @game_session = @round.game_session
         @round.question_id = @question.id
-        respond_to do |format|
-            if @round.save
-                format.html { redirect_to @game_session }
-                format.json {render :show }
-            else
-                format.html { redirect_to @game_session}
-                format.json { render json: @round }
+        if @round.save
+            respond_to do |f|
+                f.html {redirect_to @round}
+                f.json {render :json => @round }
             end
         end
     end

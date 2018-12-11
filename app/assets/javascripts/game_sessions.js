@@ -15,19 +15,23 @@ $(function(){
 })
 $(function(){
     $("#new_round").on("submit", function(e){
-        $.ajax({
-            type: this.method,
-            url: this.action,
-            data: $(this).serialize(),  
-            success: function(response){
-                $("question_content").val("");
-                let $ul = $("div.question ul")
-                $ul.append(response);
-            }
-        })
-        
+        let $form = $(this);
+        let action = $form.attr("action");
+        let params = $form.serialize()
 
         e.preventDefault()
+
+        $.ajax({
+            url: action,
+            data: params,
+            dataType: "json",
+            method: "POST"
+        }).success(function(json){
+        //$.post(action, params, "json").success(function(json){
+        
+            console.log(json)
+        })
+        
         
     })
 });
@@ -43,7 +47,7 @@ $(function(){
             type: this.method,
             url: this.action,
             data: $(this).serialize(),
-            success: function(response){
+            success: function(json){
                 $("question_content").val("");
                 let $ul = $("div.question ul")
                 $ul.append(response);
